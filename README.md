@@ -1,1 +1,1 @@
-# City LIst Application
+# City List Application
