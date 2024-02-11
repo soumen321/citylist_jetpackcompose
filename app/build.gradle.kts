@@ -90,6 +90,11 @@ dependencies {
 
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0")
 
+    /* Room DB */
+    implementation("androidx.room:room-runtime:2.4.3")
+    kapt("androidx.room:room-compiler:2.4.3")
+    implementation( "androidx.room:room-ktx:2.4.3")
+
     implementation("com.google.accompanist:accompanist-swiperefresh:0.20.0")
 
 

@@ -4,7 +4,11 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -13,6 +17,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -25,8 +30,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.citylistjetpack.data.remote.FakeJsonDataInject.injectData
 import com.example.citylistjetpack.data.remote.FakeJsonDataInject.loadJSONFromAsset
 import com.example.citylistjetpack.domain.model.CityList
@@ -122,13 +129,47 @@ fun PullToRefresh(
 fun StateList(states: List<CityList>) {
     LazyColumn {
         items(states.size) { state ->
-           // var expanded by remember { mutableStateOf(false) }
 
-            Text(
-                text = states[state].city,
-                modifier = Modifier.fillMaxWidth()
-                    .padding(16.dp)
-            )
+
+
+           Box(
+               modifier = Modifier
+                   .fillMaxWidth()
+                   .padding(8.dp)
+                   .border(
+                       BorderStroke(2.dp, Color.LightGray),
+                       shape = RoundedCornerShape(16f)
+                   )
+           ){
+               Column(
+                   modifier = Modifier.background(Color.White).padding(8.dp)
+               ) {
+                   Text(
+                       text = states[state].city,
+                       fontSize = 18.sp,
+                       fontWeight = FontWeight.Bold,
+                       style = MaterialTheme.typography.bodyLarge,
+                   )
+                   Text(
+                       text = states[state].capital,
+                       fontSize = 16.sp,
+                       style = MaterialTheme.typography.bodyMedium,
+                   )
+                   Text(
+                       text = "Population : ".plus(states[state].population),
+                       fontSize = 16.sp,
+                       style = MaterialTheme.typography.bodyMedium,
+                   )
+                   Text(
+                       text = "Lat : ".plus(states[state].lat).plus(" Lan : ${states[state].lng}"),
+                       fontSize = 16.sp,
+                       style = MaterialTheme.typography.bodyMedium,
+                   )
+               }
+
+           }
+
+
 
 //            if (expanded) {
 //                state.cities.forEach { city ->

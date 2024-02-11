@@ -23,9 +23,6 @@ class CityViewModel @Inject constructor(
     private val userCaseCityList: UserCaseCityList
 ) : ViewModel() {
 
-
-
-
     var state by mutableStateOf(CityState())
 
     private val _isRefreshing = MutableStateFlow(false)
@@ -35,12 +32,13 @@ class CityViewModel @Inject constructor(
     init {
         fetchCity()
     }
-    private fun fetchCity() {
+
+    private fun fetchCity(isRefresh:Boolean = false) {
         viewModelScope.launch {
             state = state.copy(
                 isLoading = true,
             )
-            when(val result = userCaseCityList()) {
+            when(val result = userCaseCityList(isRefresh)) {
 
 
                 is Resource.Success -> {
@@ -64,7 +62,7 @@ class CityViewModel @Inject constructor(
     }
 
     fun refreshStates() {
-        fetchCity()
+        fetchCity(true)
     }
 
 

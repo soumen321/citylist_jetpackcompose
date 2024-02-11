@@ -10,7 +10,7 @@ class UserCaseCityList @Inject constructor(
     private val repository : ICityRepository,
 ) {
 
-    suspend operator fun invoke(): Resource<List<CityList>> {
-        return repository.getCityList()
+    suspend operator fun invoke(isRefresh:Boolean = false): Resource<List<CityList>> {
+        return repository.getCityList(isRefresh)
     }
 }
