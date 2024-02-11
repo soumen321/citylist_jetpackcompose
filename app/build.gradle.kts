@@ -97,7 +97,7 @@ dependencies {
 
     implementation("com.google.accompanist:accompanist-swiperefresh:0.20.0")
 
-
+    implementation("androidx.core:core-splashscreen:1.0.1")
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")

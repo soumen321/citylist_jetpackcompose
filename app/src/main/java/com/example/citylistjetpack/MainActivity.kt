@@ -1,6 +1,10 @@
 package com.example.citylistjetpack
 
+import android.animation.ObjectAnimator
+import android.annotation.SuppressLint
 import android.os.Bundle
+import android.view.View
+import android.view.animation.OvershootInterpolator
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
@@ -19,9 +23,14 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarColors
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -34,6 +43,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.core.animation.doOnEnd
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.example.citylistjetpack.data.remote.FakeJsonDataInject.injectData
 import com.example.citylistjetpack.data.remote.FakeJsonDataInject.loadJSONFromAsset
 import com.example.citylistjetpack.domain.model.CityList
@@ -48,6 +59,8 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
     private val viewModel: CityViewModel by viewModels()
+    @OptIn(ExperimentalMaterial3Api::class)
+    @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -55,6 +68,36 @@ class MainActivity : ComponentActivity() {
         val json = loadJSONFromAsset(this, "au_cities.json")
         if (json != null) {
             injectData(json);
+        }
+
+        installSplashScreen().apply {
+            setKeepOnScreenCondition {
+                !viewModel.isReady.value
+            }
+            setOnExitAnimationListener { screen ->
+                val zoomX = ObjectAnimator.ofFloat(
+                    screen.iconView,
+                    View.SCALE_X,
+                    0.4f,
+                    0.0f
+                )
+                zoomX.interpolator = OvershootInterpolator()
+                zoomX.duration = 500L
+                zoomX.doOnEnd { screen.remove() }
+
+                val zoomY = ObjectAnimator.ofFloat(
+                    screen.iconView,
+                    View.SCALE_Y,
+                    0.4f,
+                    0.0f
+                )
+                zoomY.interpolator = OvershootInterpolator()
+                zoomY.duration = 500L
+                zoomY.doOnEnd { screen.remove() }
+
+                zoomX.start()
+                zoomY.start()
+            }
         }
 
         setContent {
@@ -66,8 +109,29 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                   // Greeting("Android")
-                    StateScreen(viewModel)
+
+                    Scaffold(
+                        topBar = {
+                            TopAppBar(
+                                title = {
+                                    Text(
+                                        text = "City List",
+                                        modifier = Modifier.padding(16.dp),
+                                        color = Color.White
+                                    )
+                                },
+                                actions = {
+
+                                },
+                                colors = TopAppBarDefaults.smallTopAppBarColors(containerColor = Color.Blue),
+                                modifier = Modifier
+                                    .background(color = Color.Blue)
+
+                            )
+                        }
+                    ) {
+                        StateScreen(viewModel)
+                    }
                 }
             }
         }
@@ -82,7 +146,7 @@ fun StateScreen(viewModel: CityViewModel) {
         refreshingState = isRefreshing,
         onRefresh = { viewModel.refreshStates() }
     ) {
-        Column(modifier = Modifier.fillMaxSize()) {
+        Column(modifier = Modifier.fillMaxSize().padding(top = 60.dp)) {
             if(viewModel.state.isLoading){
                 Column(
                     modifier = Modifier.fillMaxSize(),
