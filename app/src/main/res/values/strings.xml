@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">CityListJetpackCompose</string>
+    <string name="app_name">Find City</string>
+    <string name="lbl_something_wrong">Something went wrong</string>
 </resources>

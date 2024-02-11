@@ -1,4 +1,7 @@
-package com.example.citylistjetpack.data.model
+package com.example.citylistjetpack.domain.model
+
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
 /*
 * "city": "Melbourne",
@@ -11,8 +14,11 @@ package com.example.citylistjetpack.data.model
     "population": "4529500",
     "population_proper": "4529500"
     * */
-
+@Entity(
+    tableName = "CityList"
+)
 data class CityList(
+    @PrimaryKey(autoGenerate = false)
     val city : String,
     val capital : String,
     val population : String,
