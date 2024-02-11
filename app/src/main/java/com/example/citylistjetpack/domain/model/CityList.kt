@@ -1,4 +1,4 @@
-package com.example.citylistjetpack.data.model
+package com.example.citylistjetpack.domain.model
 
 /*
 * "city": "Melbourne",
