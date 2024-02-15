@@ -5,15 +5,15 @@
 
 <b> Clean Architecture : </b><br/>
    &nbsp; 1. Data <br/>
-        &ensp; a> remote <br/>
-        &ensp; b> repository <br/>
+        &ensp;&ensp; a> remote <br/>
+        &ensp;&ensp; b> repository <br/>
    &nbsp; 2. Domain  <br/>
-        &ensp; a> model <br/>
-        &ensp; b> repository <br/>
-        &ensp; c> usecase <br/>
+        &ensp;&ensp; a> model <br/>
+        &ensp;&ensp; b> repository <br/>
+        &ensp;&ensp; c> usecase <br/>
    &nbsp; 3. Presentation <br/>
-       &ensp; a> activity / fragment <br/>
-       &ensp; b> viewmodel <br/>
+       &ensp;&ensp; a> activity / fragment <br/>
+       &ensp;&ensp; b> viewmodel <br/>
    &nbsp; 4. di (dependency injection)<br/>
    &nbsp; 5. db (Room Db)<br/>
    &nbsp; 6. utility<br/>   
