@@ -1,7 +1,25 @@
 # CityList Application
 
  
- <b>Technology : </b><br/> MVVM , Clean architecture , Kotlin Coroutines, Jetpack Compose,Retrofit, Hilt
+ <b>Technology : </b><br/> MVVM , Clean architecture , Kotlin Coroutines, Jetpack Compose,Retrofit, Hilt <br/><br/>
+
+<b> Clean Architecture : </b><br/>
+    1. Data <br/>
+                a> remote <br/>
+                b> repository <br/>
+    2. Domain  <br/>
+                a> model 
+                b> repository
+                c> usecase
+    3. Presentation <br/>
+               a> activity / fragment <br/>
+               b> viewmodel <br/>
+    4. di (dependency injection)<br/>
+    5. db (Room Db)<br/>
+    6. utility
+
+
+   
 
  <b>Functionality :</b> <br/>
                1. Loads the data in a list <br/>
