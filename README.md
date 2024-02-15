@@ -3,17 +3,15 @@
  
  <b>Technology : </b><br/> MVVM , Clean architecture , Kotlin Coroutines, Jetpack Compose,Retrofit, Hilt <br/><br/>
 
-<b> Clean Architecture : </b><br/>
+<b> Clean Architecture Folder Structure : </b><br/>
 
    &nbsp; 1. Data <br/>
         &ensp;&ensp; a> remote <br/>
         &ensp;&ensp; b> repository <br/><br/>
-
    &nbsp; 2. Domain  <br/>
         &ensp;&ensp; a> model <br/>
         &ensp;&ensp; b> repository <br/>
         &ensp;&ensp; c> usecase <br/><br/>
-
    &nbsp; 3. Presentation <br/>
        &ensp;&ensp; a> activity / fragment <br/>
        &ensp;&ensp; b> viewmodel <br/><br/>
