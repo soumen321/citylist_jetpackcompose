@@ -4,22 +4,19 @@
  <b>Technology : </b><br/> MVVM , Clean architecture , Kotlin Coroutines, Jetpack Compose,Retrofit, Hilt <br/><br/>
 
 <b> Clean Architecture : </b><br/>
-    1. Data <br/>
-                a> remote <br/>
-                b> repository <br/>
-    2. Domain  <br/>
-                a> model 
-                b> repository
-                c> usecase
-    3. Presentation <br/>
-               a> activity / fragment <br/>
-               b> viewmodel <br/>
-    4. di (dependency injection)<br/>
-    5. db (Room Db)<br/>
-    6. utility
-
-
-   
+   &nbsp; 1. Data <br/>
+        &nbsp;&nbsp; a> remote <br/>
+        &nbsp;&nbsp; b> repository <br/>
+   &nbsp; 2. Domain  <br/>
+        &nbsp;&nbsp; a> model <br/>
+        &nbsp;&nbsp; b> repository <br/>
+        &nbsp;&nbsp; c> usecase <br/>
+   &nbsp; 3. Presentation <br/>
+        &nbsp;&nbsp; a> activity / fragment <br/>
+        &nbsp;&nbsp; b> viewmodel <br/>
+   &nbsp; 4. di (dependency injection)<br/>
+   &nbsp; 5. db (Room Db)<br/>
+   &nbsp; 6. utility<br/>   
 
  <b>Functionality :</b> <br/>
                1. Loads the data in a list <br/>
