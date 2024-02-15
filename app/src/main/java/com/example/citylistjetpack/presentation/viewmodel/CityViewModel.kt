@@ -1,11 +1,8 @@
 package com.example.citylistjetpack.presentation.viewmodel
 
-import androidx.compose.runtime.State
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.citylistjetpack.domain.model.CityList
@@ -38,7 +35,6 @@ class CityViewModel @Inject constructor(
             _isReady.value = true
             fetchCity()
         }
-
     }
 
     private fun fetchCity(isRefresh:Boolean = false) {
@@ -48,11 +44,10 @@ class CityViewModel @Inject constructor(
             )
             when(val result = userCaseCityList(isRefresh)) {
 
-
                 is Resource.Success -> {
                     delay(2000)
                     state = state.copy(
-                        weatherInfo = result.data,
+                        cityList = result.data,
                         isLoading = false,
                         onComplete = true,
                         error = null,
@@ -75,7 +70,7 @@ class CityViewModel @Inject constructor(
 
 
     data class CityState(
-        val weatherInfo: List<CityList> =  emptyList(),
+        val cityList: List<CityList> =  emptyList(),
         val isLoading: Boolean = false,
         val onComplete:Boolean = false,
         val error: String? = null,
